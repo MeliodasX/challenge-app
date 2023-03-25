@@ -6,7 +6,7 @@ const initialState = {
     videoLink: "https://www.youtube.com/watch?v=GHjopp47vvQ",
     categories: "Label 1, Label 2, Label 3",
     businessModel: "Label 1, Label 2, Label 3",
-    updateTRL: "TRL 1 – Basic principles observed (product idea available)",
+    TRL: "TRL 1 – Basic principles observed (product idea available)",
     cost: "< 1000 $"
 }
 

@@ -1,3 +1,3 @@
 export const Main = () => {
-    return "Main";
+    return null;
 }
