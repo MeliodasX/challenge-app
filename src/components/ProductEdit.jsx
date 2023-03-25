@@ -1,10 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {Avatar} from "./Avatar";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {useGetTRLQuery} from "../redux/api/productAPI";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import Select from "react-select";
 import {
     updateBusinessModel,
@@ -13,11 +11,13 @@ import {
     updateTRL,
     updateVideoLink
 } from "../redux/slices/product/productSlice";
+import JoditEditor from 'jodit-react';
 
 export const ProductEdit = () => {
     const productData = useSelector(state => state.product);
     const config = useSelector(state => state.appConfig.config);
     const [TRLOptions, setTRLOptions] = useState([]);
+    const editor = useRef(null);
 
     const {data, isLoading, isError} = useGetTRLQuery();
     const dispatch = useDispatch();
@@ -62,6 +62,16 @@ export const ProductEdit = () => {
                                className="w-full outline-0 bg-gray-50 border border-gray-300 focus:border-blue-800 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                                placeholder="Add a youtube or vimeo link"
                                required/>
+                        <JoditEditor
+                            ref={editor}
+                            value={productData.description}
+                            config={config}
+                            tabIndex={1}
+                            onBlur={e => {
+                                dispatch(updateDescription({description: e}))
+                            }}
+                            className={`text-start`}
+                        />
                     </div>
                 </div>
                 <div
