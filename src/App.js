@@ -56,12 +56,12 @@ function App() {
     if (productIsError || configIsError) return <div>Error Retrieving Info</div>
 
     return (
-        <div className="App">
-            <div className={`flex flex-col bg-[#F9FAFB] h-screen`}>
+        <div className="App overflow-x-hidden">
+            <div className={`flex flex-col bg-[#F9FAFB] min-h-screen`}>
                 <Header bgColor={config?.mainColor}/>
                 <div className={`flex flex-row px-[20px] lg:px-0 lg:mx-[10%]`}>
                     <div className={`hidden lg:flex lg:w-[15%] flex-col gap-y-[16px] mt-[16px] items-start`}>
-                        <Avatar name={`Sven Pietsch`} company={`Innoloft GmbH`}/>
+                        <Avatar name={`Sven Pietsch`} company={`Innoloft GmbH`} stack={true}/>
                         <div className={`flex flex-row gap-x-[8px]`}>
                             <img src="https://img.icons8.com/windows/512/smart-home-2.png" alt="Location Logo"
                                  className={`w-[20px] h-[20px]`}/>

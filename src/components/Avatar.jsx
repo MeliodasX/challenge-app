@@ -1,6 +1,6 @@
-export const Avatar = ({ avatar, name, company }) => {
+export const Avatar = ({ avatar, name, company, stack }) => {
     return (
-        <div className={`flex flex-row items-center gap-x-[8px]`}>
+        <div className={`flex ${(stack) ? "flex-col" : "flex-row items-center"} gap-x-[8px]`}>
             <div className={`flex justify-center items-center`}>
                 <img src={(avatar) ? avatar : "https://thumbs.dreamstime.com/b/woman-avatar-icon-flat-style-illustration-web-isolated-black-background-woman-avatar-icon-flat-style-illustration-web-163672116.jpg"} alt="avatar" className={`w-[40px] h-[40px] rounded-full`}/>
             </div>

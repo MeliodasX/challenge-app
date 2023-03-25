@@ -2,7 +2,6 @@ import {useSelector} from "react-redux";
 import ReactPlayer from "react-player";
 import {Avatar} from "./Avatar";
 import {Link} from "react-router-dom"
-
 export const ProductView = () => {
     const productData = useSelector(state => state.product);
     const config = useSelector(state => state.appConfig.config);
@@ -30,9 +29,10 @@ export const ProductView = () => {
                         <p className={`text-start font-semibold text-md`}>
                             {productData.title}
                         </p>
-                        <p className={`text-start text-sm`}>
-                            {productData.description}
-                        </p>
+                        <div
+                            className={`text-start`}
+                            dangerouslySetInnerHTML={{__html: productData.description}}
+                        />
                     </div>
                 </div>
                 <div className={`${(config?.hasUserSection ? "" : "hidden")} flex-col lg:w-[25%] space-y-[16px] py-[16px] px-[10px] lg:px-[20px]`}>
