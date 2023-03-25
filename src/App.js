@@ -34,6 +34,18 @@ function App() {
                         </div>
                     </div>
                     <div className={`w-full`}>
+                        <div className={`lg:hidden flex flex-row justify-evenly my-[10px] py-[12px] px-[10px] bg-[#272e71]`}>
+                            <Link to={"/"}>
+                                <p className={`text-sm text-white hover:underline`}>
+                                    Home
+                                </p>
+                            </Link>
+                            <Link to={"/product"}>
+                                <p className={`text-sm text-white hover:underline`}>
+                                    Product
+                                </p>
+                            </Link>
+                        </div>
                         <Routes>
                             <Route path="/" element={<Main/>}/>
                             <Route path="/product" element={<ProductView/>}/>

@@ -1,11 +1,19 @@
 import {useSelector} from "react-redux";
 import ReactPlayer from "react-player";
 import {Avatar} from "./Avatar";
+import {Link} from "react-router-dom"
 
 export const ProductView = () => {
     const productData = useSelector(state => state.product);
     return (
         <div className={`flex flex-col gap-y-[16px] py-[16px]`}>
+            <div className={`flex justify-start lg:justify-end`}>
+                <Link to={`/product/edit`}>
+                    <button className={`bg-[#272e71] hover:bg-[#040a4a] rounded-md px-[12px] py-[6px] text-white`}>
+                        Edit
+                    </button>
+                </Link>
+            </div>
             <div
                 className={`flex flex-col lg:flex-row border rounded-md bg-white gap-y-[16px]`}>
                 <div className={`flex flex-col lg:w-[75%] lg:border-r`}>
