@@ -29,12 +29,12 @@ function App() {
                 picture: productData.picture,
                 categories: productData.categories.map((it) => {
                     return it.name;
-                }),
+                }).toString(),
                 cost: productData.investmentEffort,
                 TRL: productData.trl.name,
                 businessModel: productData.businessModels.map((it) => {
                     return it.name;
-                }),
+                }).toString(),
                 videoLink: productData.video,
                 userName: `${productData.user.firstName} ${productData.user.lastName}`,
                 profilePicture: productData.user.profilePicture,

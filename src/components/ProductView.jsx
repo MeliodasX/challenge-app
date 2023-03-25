@@ -87,7 +87,7 @@ export const ProductView = () => {
                                 </p>
                                 <div className={`flex flex-row flex-wrap gap-x-[4px] gap-y-[8px]`}>
                                     {
-                                        productData.categories?.map((it, i) => {
+                                        productData.categories?.split(",").map((it, i) => {
                                             return (
                                                 <div key={i}
                                                      className={`bg-[#E5E7EB] text-xs text-gray-500 rounded-lg px-[6px] py-[3px]`}>
@@ -112,7 +112,7 @@ export const ProductView = () => {
                                 </p>
                                 <div className={`flex flex-row flex-wrap gap-x-[4px] gap-y-[8px]`}>
                                     {
-                                        productData.businessModel?.map((it, i) => {
+                                        productData.businessModel?.split(",").map((it, i) => {
                                             return (
                                                 <div key={i}
                                                      className={`bg-[#E5E7EB] text-xs text-gray-500 rounded-lg px-[6px] py-[3px]`}>
