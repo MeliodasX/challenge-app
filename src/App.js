@@ -7,7 +7,7 @@ import {Header} from "./components/Header";
 import {Avatar} from "./components/Avatar";
 import {useGetAppConfigQuery, useGetProductQuery} from "./redux/api/productAPI";
 import {useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {updateProduct} from "./redux/slices/product/productSlice";
 import {updateAppConfig} from "./redux/slices/app/appSlice";
 
@@ -18,6 +18,7 @@ function App() {
         isLoading: configIsLoading,
         isError: configIsError
     } = useGetAppConfigQuery({appId: (process.env.REACT_APP_APP_ID) ? process.env.REACT_APP_APP_ID : 1});
+    const config = useSelector(state => state.appConfig.config);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -47,7 +48,7 @@ function App() {
 
     useEffect(() => {
         if (!configIsLoading) {
-            dispatch(updateAppConfig(configData));
+            dispatch(updateAppConfig({config: configData}));
         }
     }, [configData, configIsLoading])
 
@@ -57,7 +58,7 @@ function App() {
     return (
         <div className="App">
             <div className={`flex flex-col bg-[#F9FAFB] h-screen`}>
-                <Header/>
+                <Header bgColor={config?.mainColor}/>
                 <div className={`flex flex-row px-[20px] lg:px-0 lg:mx-[10%]`}>
                     <div className={`hidden lg:flex lg:w-[15%] flex-col gap-y-[16px] mt-[16px] items-start`}>
                         <Avatar name={`Sven Pietsch`} company={`Innoloft GmbH`}/>
@@ -82,7 +83,11 @@ function App() {
                     </div>
                     <div className={`w-full`}>
                         <div
-                            className={`lg:hidden flex flex-row justify-evenly my-[10px] py-[12px] px-[10px] bg-[#272e71]`}>
+                            className={`lg:hidden flex flex-row justify-evenly my-[10px] py-[12px] px-[10px]`}
+                            style={{
+                                backgroundColor: (config?.mainColor) ? config.mainColor : "#073c41",
+                            }}
+                        >
                             <Link to={"/"}>
                                 <p className={`text-sm text-white hover:underline`}>
                                     Home

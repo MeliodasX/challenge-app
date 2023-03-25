@@ -5,18 +5,21 @@ import {Link} from "react-router-dom"
 
 export const ProductView = () => {
     const productData = useSelector(state => state.product);
+    const config = useSelector(state => state.appConfig.config);
     return (
         <div className={`flex flex-col gap-y-[16px] py-[16px]`}>
             <div className={`flex justify-start lg:justify-end`}>
                 <Link to={`/product/edit`}>
-                    <button className={`bg-[#272e71] hover:bg-[#040a4a] rounded-md px-[12px] py-[6px] text-white`}>
+                    <button className={`rounded-md px-[12px] py-[6px] text-white`} style={{
+                        backgroundColor: (config?.mainColor) ? config.mainColor : "#073c41",
+                    }}>
                         Edit
                     </button>
                 </Link>
             </div>
             <div
                 className={`flex flex-col lg:flex-row border rounded-md bg-white gap-y-[16px]`}>
-                <div className={`flex flex-col lg:w-[75%] lg:border-r`}>
+                <div className={`flex flex-col ${(config?.hasUserSection ? "lg:w-[75%] lg:border-r" : "w-full")}`}>
                     <div className={`flex justify-start`}>
                         <img
                             src={productData.picture}
@@ -32,7 +35,7 @@ export const ProductView = () => {
                         </p>
                     </div>
                 </div>
-                <div className={`flex-col lg:w-[25%] space-y-[16px] py-[16px] px-[10px] lg:px-[20px]`}>
+                <div className={`${(config?.hasUserSection ? "" : "hidden")} flex-col lg:w-[25%] space-y-[16px] py-[16px] px-[10px] lg:px-[20px]`}>
                     <div className={`flex justify-start font-semibold text-md`}>
                         Offered By
                     </div>
