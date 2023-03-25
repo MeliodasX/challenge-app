@@ -1,19 +1,40 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    title: "Intelligent Finite Element in Structural mechanics",
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-    videoLink: "https://www.youtube.com/watch?v=GHjopp47vvQ",
-    categories: "Label 1, Label 2, Label 3",
-    businessModel: "Label 1, Label 2, Label 3",
-    TRL: "TRL 1 – Basic principles observed (product idea available)",
-    cost: "< 1000 $"
+    title: "",
+    description: "",
+    videoLink: "",
+    categories: [],
+    businessModel: [],
+    TRL: "",
+    cost: "",
+    picture: "",
+    userName: "",
+    profilePicture: "",
+    companyName: "",
+    companyLogo: "",
+    address: "",
 }
 
 export const productSlice = createSlice({
     name: 'productSlice',
     initialState,
     reducers: {
+        updateProduct: (state, action) => {
+            state.title = action.payload.title;
+            state.description = action.payload.description;
+            state.videoLink = action.payload.videoLink;
+            state.categories = action.payload.categories;
+            state.businessModel = action.payload.businessModel;
+            state.TRL = action.payload.TRL;
+            state.cost = action.payload.cost;
+            state.userName = action.payload.userName;
+            state.profilePicture = action.payload.profilePicture;
+            state.companyName = action.payload.companyName;
+            state.companyLogo = action.payload.companyLogo;
+            state.address = action.payload.address;
+            state.picture = action.payload.picture;
+        },
         updateTitle: (state, action) => {
             state.title = action.payload.title;
         },
@@ -39,6 +60,7 @@ export const productSlice = createSlice({
 });
 
 export const {
+    updateProduct,
     updateTitle,
     updateBusinessModel,
     updateCategories,

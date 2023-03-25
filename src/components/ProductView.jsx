@@ -19,7 +19,7 @@ export const ProductView = () => {
                 <div className={`flex flex-col lg:w-[75%] lg:border-r`}>
                     <div className={`flex justify-start`}>
                         <img
-                            src="https://www.roboticsandinnovation.co.uk/wp-content/uploads/2022/01/shutterstock_2002537646-1-702x336.jpg"
+                            src={productData.picture}
                             alt="product"
                         />
                     </div>
@@ -36,13 +36,14 @@ export const ProductView = () => {
                     <div className={`flex justify-start font-semibold text-md`}>
                         Offered By
                     </div>
-                    <img src="https://img.innoloft.com/logo.svg" alt="company logo" className={`w-[100px] h-[50px]`}/>
-                    <Avatar name={`Sven Pietsch`} company={`Innoloft GmbH`}/>
+                    <img src={productData.companyLogo} alt="company logo" className={`h-[50px]`}/>
+                    <Avatar name={productData.userName} company={productData.companyName}
+                            avatar={productData.profilePicture}/>
                     <div className={`flex flex-row gap-x-[8px]`}>
                         <img src="https://img.icons8.com/windows/512/map-pin.png" alt="Location Logo"
                              className={`w-[20px] h-[20px]`}/>
                         <p className={`text-xs text-gray-500 text-start`}>
-                            Jülicher Straße 72a c/o digitalHUB, 52070 Aachen, Germany
+                            {`${productData.address.street} ${productData.address.house}, ${productData.address.zipCode} ${productData.address.city?.name}, ${productData.address.country?.name}`}
                         </p>
                     </div>
                     <iframe
@@ -50,7 +51,7 @@ export const ProductView = () => {
                         title={`Office Location`}
                         width="100%"
                         height={200}
-                        style={{border : "0"}}
+                        style={{border: "0"}}
                         allowFullScreen=""
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade">
@@ -73,7 +74,8 @@ export const ProductView = () => {
                     <div className={`flex flex-col lg:flex-row gap-y-[16px] justify-evenly`}>
                         <div className={`flex flex-row gap-x-[4px] lg:w-[50%]`}>
                             <div className={`flex justify-start shrink-0`}>
-                                <img src="https://img.icons8.com/fluency-systems-regular/512/sorting-answers.png" alt="Categories Logo"
+                                <img src="https://img.icons8.com/fluency-systems-regular/512/sorting-answers.png"
+                                     alt="Categories Logo"
                                      className={`w-[20px] h-[20px]`}/>
                             </div>
                             <div className={`flex flex-col gap-y-[8px] items-start `}>
@@ -82,7 +84,7 @@ export const ProductView = () => {
                                 </p>
                                 <div className={`flex flex-row flex-wrap gap-x-[4px] gap-y-[8px]`}>
                                     {
-                                        productData.categories.split(",").map((it, i) => {
+                                        productData.categories?.map((it, i) => {
                                             return (
                                                 <div key={i}
                                                      className={`bg-[#E5E7EB] text-xs text-gray-500 rounded-lg px-[6px] py-[3px]`}>
@@ -96,9 +98,10 @@ export const ProductView = () => {
                         </div>
                         <div className={`flex flex-row gap-x-[4px] lg:w-[50%]`}>
                             <div className={`flex justify-start shrink-0`}>
-                                <img src="https://img.icons8.com/external-obvious-line-kerismaker/512/external-activities-stay-at-home-line-obvious-line-kerismaker-12.png"
-                                     alt="Business Model Logo"
-                                     className={`w-[20px] h-[20px]`}/>
+                                <img
+                                    src="https://img.icons8.com/external-obvious-line-kerismaker/512/external-activities-stay-at-home-line-obvious-line-kerismaker-12.png"
+                                    alt="Business Model Logo"
+                                    className={`w-[20px] h-[20px]`}/>
                             </div>
                             <div className={`flex flex-col gap-y-[8px] items-start`}>
                                 <p className={`text-sm text-gray-500`}>
@@ -106,7 +109,7 @@ export const ProductView = () => {
                                 </p>
                                 <div className={`flex flex-row flex-wrap gap-x-[4px] gap-y-[8px]`}>
                                     {
-                                        productData.businessModel.split(",").map((it, i) => {
+                                        productData.businessModel?.map((it, i) => {
                                             return (
                                                 <div key={i}
                                                      className={`bg-[#E5E7EB] text-xs text-gray-500 rounded-lg px-[6px] py-[3px]`}>
