@@ -1,8 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {Avatar} from "./Avatar";
-import {useGetTRLQuery} from "../redux/api/productAPI";
-import {useEffect, useMemo, useRef, useState} from "react";
+import {useGetTRLQuery, useUpdateProductMutation} from "../redux/api/productAPI";
+import {useEffect, useRef, useState} from "react";
 import Select from "react-select";
 import {
     updateBusinessModel,
@@ -18,6 +18,7 @@ export const ProductEdit = () => {
     const config = useSelector(state => state.appConfig.config);
     const [TRLOptions, setTRLOptions] = useState([]);
     const editor = useRef(null);
+    const [updateProductAPI] = useUpdateProductMutation();
 
     const {data, isLoading, isError} = useGetTRLQuery();
     const dispatch = useDispatch();
@@ -30,17 +31,27 @@ export const ProductEdit = () => {
         }
     }, [data, isLoading])
 
+    const updateProductCall = async () => {
+        const status = await updateProductAPI({
+            updatedProduct: {}
+        }).unwrap();
+        console.log(status);
+    }
+
     if (isLoading) return <div>Loading...</div>
     if (isError) return <div>Error Retrieving Info</div>
 
     return (
         <div className={`flex flex-col gap-y-[16px] py-[16px]`}>
             <div className={`flex justify-start lg:justify-end`}>
-                <Link to={`/product`}>
+                <Link
+                    onClick={() => updateProductCall()}
+                    to={`/product`}
+                >
                     <button className={`rounded-md px-[12px] py-[6px] text-white`} style={{
                         backgroundColor: (config?.mainColor) ? config.mainColor : "#073c41",
                     }}>
-                        Back
+                        Save
                     </button>
                 </Link>
             </div>

@@ -2,13 +2,16 @@ import {useSelector} from "react-redux";
 import ReactPlayer from "react-player";
 import {Avatar} from "./Avatar";
 import {Link} from "react-router-dom"
+
 export const ProductView = () => {
     const productData = useSelector(state => state.product);
     const config = useSelector(state => state.appConfig.config);
+
     return (
         <div className={`flex flex-col gap-y-[16px] py-[16px]`}>
             <div className={`flex justify-start lg:justify-end`}>
-                <Link to={`/product/edit`}>
+                <Link
+                    to={`/product/edit`}>
                     <button className={`rounded-md px-[12px] py-[6px] text-white`} style={{
                         backgroundColor: (config?.mainColor) ? config.mainColor : "#073c41",
                     }}>
